@@ -1,4 +1,4 @@
-package com.example.music;
+package com.example.music.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
