@@ -8,32 +8,40 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;   // Tên bài hát
-    private String quality; // Chất lượng (VD: 320kbps, FLAC, ...)
+    private String title;
 
-    // Tham chiếu đến Album
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
 
-    // Tham chiếu đến Artist
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
+    public Song() {}
 
-    // Constructors
-    public Song() {
-    }
-
-    public Song(String title, String quality) {
+    public Song(String title, Album album) {
         this.title = title;
-        this.quality = quality;
+        this.album = album;
     }
 
-    // Getter/Setter
+    // Getters và Setters
     public Long getId() {
         return id;
     }
-    // ... các getter, setter cho title, quality, album, artist ...
-}
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+}

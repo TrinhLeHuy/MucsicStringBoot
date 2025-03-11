@@ -9,21 +9,39 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;   // Tên nghệ sĩ
-    private String genre;  // Thể loại nhạc
+    private String name;
 
-    @OneToMany(mappedBy = "artist")
-    private List<Song> songs;
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+    private List<Album> albums;
 
-    public Artist() {
-    }
+    public Artist() {}
 
-    public Artist(String name, String genre) {
+    public Artist(String name) {
         this.name = name;
-        this.genre = genre;
     }
 
-    // Getter/Setter
-    // ...
-}
+    // Getters và Setters
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
+    }
+}

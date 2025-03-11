@@ -1,7 +1,6 @@
 package com.example.music.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -10,20 +9,52 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;          // Tên album
-    private LocalDate releaseDate; // Ngày phát hành
+    private String title;
 
-    @OneToMany(mappedBy = "album")
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
     private List<Song> songs;
 
-    public Album() {
+    public Album() {}
+
+    public Album(String title, Artist artist) {
+        this.title = title;
+        this.artist = artist;
     }
 
-    public Album(String name, LocalDate releaseDate) {
-        this.name = name;
-        this.releaseDate = releaseDate;
+    // Getters và Setters
+    public Long getId() {
+        return id;
     }
 
-    // Getter/Setter
-    // ...
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 }
